@@ -25,5 +25,5 @@ jobs:
         run: terraform init
 
       - name: terraform plan
-        if: github.event_name == "push"
+        if: github.event_name == push
         run: terraform plan -input=false
