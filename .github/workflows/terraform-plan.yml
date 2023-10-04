@@ -14,19 +14,20 @@ jobs:
       aws_secret_access_key: ${{secrets.AWS_SECRET_ACCESS_KEY_ID}}
       aws_region: "us-east-1"
 
-steps:
-  - name: Checkout Code
-    uses: actions/checkout@v2
+  steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2
 
-  - name: Setup Terraform
-    uses: hashicorp/setup-terraform@v1
-    with: 
-      terraform_version: 0.15.0
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+      with: 
+        terraform_version: 0.15.0
 
-  - name: Terraform Init
-    id: init
-    run: terraform init
+    - name: Terraform Init
+      id: init
+      run: terraform init
 
-  - name: terraform plan
-    id: plan
-    run: terraform plan -no-color
+    - name: terraform plan
+      id: plan
+      if: github.event_name == "push"
+      run: terraform plan -no-color
