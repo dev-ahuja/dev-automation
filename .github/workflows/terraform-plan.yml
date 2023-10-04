@@ -9,8 +9,8 @@ jobs:
     name: "Terraform"
     runs-on: ubuntu-latest
     env:
-      aws_access_key_id: 'AKIAYCV63YPIBYCRLK7Q'
-      aws_secret_access_key: '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'
+      aws_access_key_id: ${{secrets.AWS_ACCESS_KEY_ID}}
+      aws_secret_access_key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
       aws_region: 'us-east-1'
     steps:
       - name: Checkout Code
