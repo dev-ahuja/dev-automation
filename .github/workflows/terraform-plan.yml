@@ -20,7 +20,8 @@ steps:
 
   - name: Setup Terraform
     uses: hashicorp/setup-terraform@v1
-    with: terrafor_version: 0.15.0
+    with: 
+      terraform_version: 0.15.0
 
   - name: Terraform Init
     id: init
