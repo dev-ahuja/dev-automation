@@ -1,0 +1,30 @@
+name: "Terraform Infra plan"
+
+on:
+  push:
+    branches:
+      - dev/feature1
+
+jobs:
+  terraform:
+    name: "Terraform"
+    runs-on: ubuntu-latest
+    env:
+      aws_access_key_id: ${{secrets.AWS_KEY_ID}}
+      aws_secret_access_key: ${{secrets.AWS_SECRET_ACCESS_KEY_ID}}
+      aws_region: "us-east-1"
+
+steps:
+  - name: checkout
+    uses: actions/checkout@v2
+  - name: setup terraform
+    uses: hashicorp/setup-terraform@v1
+
+  - name: terraform init
+    id: init
+    run: terraform init
+
+  - name: terraform plan
+    id: plan
+    if: github.event_name == "push"
+    run: terraform plan -no-color
