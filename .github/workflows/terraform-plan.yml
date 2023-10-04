@@ -1,4 +1,4 @@
-name: "Terraform Infra plan"
+name: "Terraform Infra plan - dev/feature1"
 
 on:
   push:
@@ -15,16 +15,17 @@ jobs:
       aws_region: "us-east-1"
 
 steps:
-  - name: checkout
+  - name: Checkout Code
     uses: actions/checkout@v2
-  - name: setup terraform
-    uses: hashicorp/setup-terraform@v1
 
-  - name: terraform init
+  - name: Setup Terraform
+    uses: hashicorp/setup-terraform@v1
+    with: terrafor_version: 0.15.0
+
+  - name: Terraform Init
     id: init
     run: terraform init
 
   - name: terraform plan
     id: plan
-    if: github.event_name == "push"
     run: terraform plan -no-color
