@@ -1,5 +1,5 @@
 ---
-name: Terraform Infra plan - dev/feature1
+name: Terraform Infraplan - dev/feature1
 on:
   push:
     branches:
