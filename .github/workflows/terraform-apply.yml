@@ -30,4 +30,4 @@
               run: terraform plan -input=false
 
             - name: terraform apply
-              run: terraform plan --auto-approve
+              run: terraform apply --auto-approve
