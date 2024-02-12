@@ -10,21 +10,12 @@ terraform {
 
 # Configure the AWS Provider
 provider "aws" {
-  region  = "us-east-1"
+  region  = var.aws_region
 }
+
 
 # backend "s3" {
 #   bucket = "my-test-backend-for-tf"
 #   key = "path/to/my/key"
 #   region = "us-east-1"
 # }
-
-resource "aws_instance" "my_ec2" {
-  ami           = "ami-05c13eab67c5d8861"
-  instance_type = "t2.micro"
-  user_data = file("${path.module}/app1-install.sh")
-
-  tags = {
-    name = "first-webserver"
-  }
-}
